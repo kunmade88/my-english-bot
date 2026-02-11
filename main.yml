@@ -1,0 +1,20 @@
+name: Daily English Bot
+
+on:
+  schedule:
+    - cron: '0 23 * * *' # 한국 시간 매일 아침 8시 실행
+  workflow_dispatch: # 지금 바로 실행해보고 싶을 때 누르는 버튼
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install requests
+        run: pip install requests
+      - name: Run script
+        run: python english_bot.py
