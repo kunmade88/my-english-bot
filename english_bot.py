@@ -4,7 +4,7 @@ import os
 from gtts import gTTS
 
 # 설정 정보
-CHAT_ID = "1017565295" 
+CHAT_ID = "1017565295"
 TOKEN = "8437253425:AAGWr8az2R6jqMprMhgBsYUQ3YCn4jcHf6o"
 
 # 학습 데이터
@@ -17,6 +17,16 @@ messages = [
             "I'm looking forward to the weekend. (주말이 기다려져요.)",
             "She's looking forward to her trip. (그녀는 여행을 고대해요.)",
             "We look forward to working with you. (함께 일하길 기대합니다.)"
+        ]
+    },
+    {
+        "en": "Let's call it a day.",
+        "kr": "오늘은 이만 마칩시다.",
+        "grammar": "call it a day: 하던 일을 멈추고 끝낼 때 쓰는 아주 유용한 표현입니다.",
+        "phrases": [
+            "It's already 6 PM. Let's call it a day. (벌써 6시네. 퇴근하자.)",
+            "I'm too tired. Shall we call it a day? (너무 피곤해. 이만 할까?)",
+            "Let's call it a day and go grab beer. (이만 하고 맥주 마시러 가자.)"
         ]
     }
 ]
@@ -32,11 +42,11 @@ def run():
         f"오늘도 화이팅! 🚀"
     )
 
-    # 텍스트 전송
+    # 1. 텍스트 전송
     requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", 
                   data={"chat_id": CHAT_ID, "text": text, "parse_mode": "Markdown"})
 
-    # 음성 파일 생성 및 전송
+    # 2. 음성 파일 생성 및 전송
     try:
         tts = gTTS(text=pick['en'], lang='en')
         tts.save("voice.mp3")
