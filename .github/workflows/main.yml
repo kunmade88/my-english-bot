@@ -2,7 +2,7 @@ name: Daily English Bot
 
 on:
   schedule:
-    - cron: '0 23 * * *'
+    - cron: '0 23 * * *' # 한국 시간 아침 8시
   workflow_dispatch:
 
 jobs:
